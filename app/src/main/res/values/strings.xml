@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">recipey</string>
     <string name="search_title">Search</string>
+    <string name="search_string">Search</string>
+    <string name="not_logged_in">Log in to save your fridge online!</string>
+    <string name="empty_search">Please type an ingredient, dish, or type of cuisine to get started!</string>
+    <string name="empty_browse">Please add some ingredients to your fridge! We recommend recipes based on what you\'ve got in there!</string>
+    <string name="discover_title">Discover</string>
+    <string name="fridge_title">My Fridge</string>
+    <string name="history_title">History</string>
+    <string name="saved_subtitle">Saved</string>
+    <string name="past_subtitle">Past</string>
+    <string name="profile_title">Profile</string>
+    <string name="ingredients_subtitle">Ingredients</string>
+    <string name="instructions_subtitle">Instructions</string>
+    <string name="add_ingredient_title">Add Ingredient</string>
+    <string name="drinks_subtitle">Drinks</string>
+    <string name="sauces_subtitle">Sauces</string>
+    <string name="preparation_text">Preparation time: </string>
+    <string name="spoonacular_prefix">https://spoonacular.com/recipeImages/</string>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white_on_black">#AFFF</color>
+    <color name="cardview_black_background">#30000000</color>
+    <color name="black_background_white_text">#D000</color>
+    <color name="sliding_tab_layout">#AFFF</color>
+</resources>

@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import com.recipey.nhnic.recipey.R;
 import com.recipey.nhnic.recipey.app.GenericActivity;
 import com.recipey.nhnic.recipey.app.SlidingTabLayout;
+import com.recipey.nhnic.recipey.tabs.search.SearchFragment;
 
 /**
  * Created by nhnic on 5/11/2018.
@@ -16,7 +17,7 @@ public class MainActivity extends GenericActivity {
     private final String TAG = "MainActivity";
 
     private Fragment[] fragments;
-    private int[] icons = {};
+    private int[] icons = {R.drawable.browse, R.drawable.discover, R.drawable.stock, R.drawable.history, R.drawable.profile};
 
     private SlidingTabLayout tabs;
     private ViewPager pager;
@@ -25,6 +26,7 @@ public class MainActivity extends GenericActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         assignViews();
         assignVariables(savedInstanceState);
@@ -38,9 +40,16 @@ public class MainActivity extends GenericActivity {
 
     private void assignVariables(Bundle savedInstanceState) {
         fragments = new Fragment[5];
+        fragments[0] = new SearchFragment();
+        fragments[1] = new SearchFragment();
+        fragments[2] = new SearchFragment();
+        fragments[3] = new SearchFragment();
+        fragments[4] = new SearchFragment();
+
 
         tabs.setTabs(5);
         tabs.setTabSetting(true);
+        tabs.setSelectedIndicatorColors(0xFFFF0000);
         pager.setOffscreenPageLimit(4);
 
         mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), fragments, icons);

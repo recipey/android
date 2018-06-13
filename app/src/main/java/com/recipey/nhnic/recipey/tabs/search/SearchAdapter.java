@@ -2,12 +2,14 @@ package com.recipey.nhnic.recipey.tabs.search;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.recipey.nhnic.recipey.R;
+import com.recipey.nhnic.recipey.app.Application;
+import com.recipey.nhnic.recipey.app.GenericActivity;
 import com.recipey.nhnic.recipey.dtos.RecipesDTO.*;
 import com.squareup.picasso.Picasso;
 import com.yayandroid.parallaxrecyclerview.ParallaxImageView;
@@ -27,8 +29,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public static class ViewHolder extends ParallaxViewHolder {
         public CardView cardView;
 
+        public ParallaxImageView recipeImage;
+        public TextView recipeName;
+
         public ViewHolder(CardView v) {
             super(v);
+
+            cardView = v;
+            recipeImage = v.findViewById(R.id.recipe_image);
+            recipeName = v.findViewById(R.id.recipe_name);
         }
 
 
@@ -37,7 +46,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         }
 
         public int getParallaxImageId() {
-            return 1;
+            return R.id.recipe_image;
         }
     }
 
@@ -50,12 +59,22 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         CardView v = (CardView)LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_recipe, parent, false);
         final ViewHolder vh = new ViewHolder(v);
 
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((GenericActivity)parent.getContext()).navigateToRecipe(recipes.get(vh.getLayoutPosition()));
+            }
+        });
+
         return vh;
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        Recipe recipe = recipes.get(position);
 
+        Picasso.with(Application.getInstance()).load(recipe.recipeImageUrl).fit().centerCrop().into(holder.recipeImage);
+        holder.recipeName.setText(recipe.recipeName);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.recipey.nhnic.recipey.app;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * Created by nhnic on 5/11/2018.
  */
