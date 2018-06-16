@@ -56,15 +56,17 @@ public class RecipeActivity extends GenericActivity {
     private void assignVariables(Bundle savedInstanceState) {
         sharedPreferences = Application.getInstance().getSharedPreferences(Application.getInstance().getPackageName(), Context.MODE_PRIVATE);
 
-        Long recipeId = getIntent().getLongExtra("RECIPE_ID", -1);
-
-        Log.d(TAG, recipeId + "");
-
-        if(recipeId == -1) {
-            //if it's -1 then return a message saying there has been an error
-            recipeDetailDTO = RecipeManager.INSTANCE.getRecipe((long)1);
+        if(getIntent().hasExtra("RECIPE_FAVORITE")) {
+            recipeDetailDTO = new Gson().fromJson(getIntent().getStringExtra("RECIPE_FAVORITE"), RecipeDetailDTO.class);
         } else {
-            recipeDetailDTO = RecipeManager.INSTANCE.getRecipe(recipeId);
+            Long recipeId = getIntent().getLongExtra("RECIPE_ID", -1);
+
+            if(recipeId == -1) {
+                //if it's -1 then return a message saying there has been an error
+                recipeDetailDTO = RecipeManager.INSTANCE.getRecipe((long)1);
+            } else {
+                recipeDetailDTO = RecipeManager.INSTANCE.getRecipe(recipeId);
+            }
         }
 
         recipeTitle.setText(recipeDetailDTO.recipeName);

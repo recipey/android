@@ -1,4 +1,4 @@
-package com.recipey.nhnic.recipey.tabs.search;
+package com.recipey.nhnic.recipey.tabs.discover;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -7,12 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.recipey.nhnic.recipey.R;
 import com.recipey.nhnic.recipey.app.Application;
 import com.recipey.nhnic.recipey.app.GenericActivity;
-import com.recipey.nhnic.recipey.dtos.RecipesDTO.*;
+import com.recipey.nhnic.recipey.dtos.RecipesDTO.Recipe;
 import com.squareup.picasso.Picasso;
 import com.yayandroid.parallaxrecyclerview.ParallaxImageView;
 import com.yayandroid.parallaxrecyclerview.ParallaxViewHolder;
@@ -23,8 +21,8 @@ import java.util.ArrayList;
  * Created by nhnic on 5/22/2018.
  */
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
-    private final String TAG = "SearchAdapter";
+public class DiscoverAdapter extends RecyclerView.Adapter<DiscoverAdapter.ViewHolder> {
+    private final String TAG = "DiscoverAdapter";
 
     private ArrayList<Recipe> recipes;
 
@@ -52,7 +50,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         }
     }
 
-    public SearchAdapter(ArrayList<Recipe> recipes) {
+    public DiscoverAdapter(ArrayList<Recipe> recipes) {
         this.recipes = recipes;
     }
 
@@ -65,7 +63,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 ((GenericActivity)parent.getContext()).navigateToRecipe(recipes.get(vh.getLayoutPosition()));
-//                ((GenericActivity)parent.getContext()).navigateToDummy();
             }
         });
 
@@ -76,10 +73,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Recipe recipe = recipes.get(position);
 
-        Picasso.with(Application.getInstance()).load(recipe.recipeImageUrl).centerCrop().fit().into(holder.recipeImage);
+        Picasso.with(Application.getInstance()).load(recipe.recipeImageUrl).into(holder.recipeImage);
         holder.recipeName.setText(recipe.recipeName);
-
-//        holder.getBackgroundImage().reuse();
     }
 
     @Override

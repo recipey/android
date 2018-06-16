@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/cookbook_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="@string/cookbook_title"
+        android:textSize="20sp" />
+
+    <View
+        android:id="@+id/cookbook_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/border_shadow"
+        app:layout_constraintTop_toBottomOf="@id/cookbook_title" />
+
+    <com.recipey.nhnic.recipey.app.SlidingTabLayout
+        android:id="@+id/cookbook_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:layout_constraintTop_toBottomOf="@id/cookbook_title"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/cookbook_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/cookbook_tabs"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </android.support.v4.view.ViewPager>
+
+
+</android.support.constraint.ConstraintLayout>

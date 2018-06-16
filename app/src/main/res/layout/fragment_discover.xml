@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/discover_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="@string/discover_title"
+        android:textSize="20sp" />
+
+    <View
+        android:id="@+id/discover_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/border_shadow"
+        app:layout_constraintTop_toBottomOf="@id/discover_title" />
+
+    <com.yayandroid.parallaxrecyclerview.ParallaxRecyclerView
+        android:id="@+id/discover_results_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/discover_border" />
+
+</android.support.constraint.ConstraintLayout>

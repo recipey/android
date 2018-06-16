@@ -7,6 +7,8 @@ import android.support.v4.view.ViewPager;
 import com.recipey.nhnic.recipey.R;
 import com.recipey.nhnic.recipey.app.GenericActivity;
 import com.recipey.nhnic.recipey.app.SlidingTabLayout;
+import com.recipey.nhnic.recipey.tabs.cookbook.CookbookFragment;
+import com.recipey.nhnic.recipey.tabs.discover.DiscoverFragment;
 import com.recipey.nhnic.recipey.tabs.search.SearchFragment;
 
 /**
@@ -41,10 +43,10 @@ public class MainActivity extends GenericActivity {
     private void assignVariables(Bundle savedInstanceState) {
         fragments = new Fragment[5];
         fragments[0] = new SearchFragment();
-        fragments[1] = new SearchFragment();
-        fragments[2] = new SearchFragment();
-        fragments[3] = new SearchFragment();
-        fragments[4] = new SearchFragment();
+        fragments[1] = new DiscoverFragment();
+        fragments[2] = new Fragment();
+        fragments[3] = new CookbookFragment();
+        fragments[4] = new Fragment();
 
 
         tabs.setTabs(5);

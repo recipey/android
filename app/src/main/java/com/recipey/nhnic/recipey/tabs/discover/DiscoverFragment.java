@@ -1,4 +1,4 @@
-package com.recipey.nhnic.recipey.tabs.search;
+package com.recipey.nhnic.recipey.tabs.discover;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,54 +10,50 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.recipey.nhnic.recipey.R;
-import com.recipey.nhnic.recipey.dtos.RecipesDTO;
 import com.recipey.nhnic.recipey.managers.RecipeManager;
 import com.yayandroid.parallaxrecyclerview.ParallaxRecyclerView;
-
-import java.util.ArrayList;
 
 /**
  * Created by nhnic on 5/22/2018.
  */
 
-public class SearchFragment extends Fragment {
-        private static final String TAG = "SearchFragment";
-        private static final String KEY_LAYOUT_MANAGER = "layoutManager";
-        private static final int SPAN_COUNT = 2;
+public class DiscoverFragment extends Fragment {
+    private static final String TAG = "DiscoverFragment";
+    private static final String KEY_LAYOUT_MANAGER = "layoutManager";
+    private static final int SPAN_COUNT = 2;
 
-        private enum LayoutManagerType {
-            GRID_LAYOUT_MANAGER,
-            LINEAR_LAYOUT_MANAGER
-        }
+    private enum LayoutManagerType {
+        GRID_LAYOUT_MANAGER,
+        LINEAR_LAYOUT_MANAGER
+    }
 
-        protected LayoutManagerType currentLayoutManagerType;
-        protected ParallaxRecyclerView searchResultsRecyclerView;
-        protected SearchAdapter searchAdapter;
-        protected RecyclerView.LayoutManager layoutManager;
+    protected LayoutManagerType currentLayoutManagerType;
+    protected ParallaxRecyclerView discoverResultsRecyclerView;
+    protected DiscoverAdapter discoverAdapter;
+    protected RecyclerView.LayoutManager layoutManager;
 
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_search, container, false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_discover, container, false);
 
-            assignViews(rootView);
-            assignVariables(savedInstanceState);
-            assignHandlers();
+        assignViews(rootView);
+        assignVariables(savedInstanceState);
+        assignHandlers();
 
-            return rootView;
-        }
+        return rootView;
+    }
 
     public void assignViews(View rootView) {
-        searchResultsRecyclerView = rootView.findViewById(R.id.search_results_recycler_view);
+        discoverResultsRecyclerView = rootView.findViewById(R.id.discover_results_recycler_view);
     }
 
     public void assignVariables(Bundle savedInstanceState) {
-        searchAdapter = new SearchAdapter(RecipeManager.INSTANCE.getRecipesDTO().recipes);
-//        searchAdapter = new SearchAdapter(new ArrayList<RecipesDTO.Recipe>());
+        discoverAdapter = new DiscoverAdapter(RecipeManager.INSTANCE.getDiscoveredRecipesDTO().recipes);
 
         layoutManager = new LinearLayoutManager(getActivity());
         currentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
@@ -66,7 +62,7 @@ public class SearchFragment extends Fragment {
             currentLayoutManagerType = (LayoutManagerType) savedInstanceState.getSerializable(KEY_LAYOUT_MANAGER);
         }
         setRecyclerViewLayoutManager(currentLayoutManagerType);
-        searchResultsRecyclerView.setAdapter(searchAdapter);
+        discoverResultsRecyclerView.setAdapter(discoverAdapter);
     }
 
     public void assignHandlers() {
@@ -77,8 +73,8 @@ public class SearchFragment extends Fragment {
         int scrollPosition = 0;
 
         // If a layout manager has already been set, get current scroll position.
-        if (searchResultsRecyclerView.getLayoutManager() != null) {
-            scrollPosition = ((LinearLayoutManager) searchResultsRecyclerView.getLayoutManager())
+        if (discoverResultsRecyclerView.getLayoutManager() != null) {
+            scrollPosition = ((LinearLayoutManager) discoverResultsRecyclerView.getLayoutManager())
                     .findFirstCompletelyVisibleItemPosition();
         }
 
@@ -96,8 +92,8 @@ public class SearchFragment extends Fragment {
                 currentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
         }
 
-        searchResultsRecyclerView.setLayoutManager(layoutManager);
-        searchResultsRecyclerView.scrollToPosition(scrollPosition);
+        discoverResultsRecyclerView.setLayoutManager(layoutManager);
+        discoverResultsRecyclerView.scrollToPosition(scrollPosition);
     }
 
     @Override

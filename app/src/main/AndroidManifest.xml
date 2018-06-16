@@ -18,8 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
+
+        <activity android:name=".main.DummyActivity"/>
+
         <activity android:name=".recipe.RecipeActivity"/>
+
+        <receiver android:name=".tabs.cookbook.favorites.FavoritesFragment$FavoritesUpdateBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.recipey.UPDATE_FAVORITES">
+                </action>
+            </intent-filter>
+        </receiver>
 
     </application>
 </manifest>

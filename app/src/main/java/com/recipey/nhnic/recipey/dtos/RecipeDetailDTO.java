@@ -1,5 +1,6 @@
 package com.recipey.nhnic.recipey.dtos;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONObject;
@@ -27,19 +28,19 @@ public class RecipeDetailDTO extends JSONObject{
 
         ingredients = new ArrayList<>();
 
-        String[] is = new String[]{"Tomatoes", "Grapes", "Olives", "Ribs", "Milk"};
-
-        for (int i = 0; i < 10; i++) {
-            ingredients.add(new IngredientsDTO.Ingredient(String.format(Locale.getDefault(),"%d ounces", i + 10), is[i % 5]));
-        }
+//        String[] is = new String[]{"Tomatoes", "Grapes", "Olives", "Ribs", "Milk"};
+//
+//        for (int i = 0; i < 10; i++) {
+//            ingredients.add(new IngredientsDTO.Ingredient(String.format(Locale.getDefault(),"%d ounces", i + 10), is[i % 5]));
+//        }
 
         instructions = new ArrayList<>();
 
-        String[] ins = new String[]{"Boil the tomatoes.", "Spread each slice of bread with thousand island dressing. Top 4 of the bread slices with sauerkraut, cheese and pastrami. Place remaining bread slices on sandwich. Spread margarine on the outsides of each sandwich.", "Stir ketchup, brown sugar, Worcestershire sauce, vinegar, mustard, and lemon juice through the beef mixture. Reduce heat to medium-low and cook mixture at a simmer until mixture is hot and sauce has thickened, about 20 minutes.", "Place a large skillet over medium-high heat. Crumble ground beef into skillet; add onion and celery. Cook and stir beef mixture until beef is completely browned, 7 to 10 minutes.", "Heat a large skillet over medium high heat. Grill until browned, then turn and grill until heated through, and cheese is melted."};
-
-        for (int i = 0; i < 10; i++) {
-            instructions.add(new Instruction(i + 1, ins[i % 5]));
-        }
+//        String[] ins = new String[]{"Boil the tomatoes.", "Spread each slice of bread with thousand island dressing. Top 4 of the bread slices with sauerkraut, cheese and pastrami. Place remaining bread slices on sandwich. Spread margarine on the outsides of each sandwich.", "Stir ketchup, brown sugar, Worcestershire sauce, vinegar, mustard, and lemon juice through the beef mixture. Reduce heat to medium-low and cook mixture at a simmer until mixture is hot and sauce has thickened, about 20 minutes.", "Place a large skillet over medium-high heat. Crumble ground beef into skillet; add onion and celery. Cook and stir beef mixture until beef is completely browned, 7 to 10 minutes.", "Heat a large skillet over medium high heat. Grill until browned, then turn and grill until heated through, and cheese is melted."};
+//
+//        for (int i = 0; i < 10; i++) {
+//            instructions.add(new Instruction(i + 1, ins[i % 5]));
+//        }
     }
 
     @SerializedName("id")
@@ -82,5 +83,10 @@ public class RecipeDetailDTO extends JSONObject{
         public int instructionNumber;
 
         public String instructionDetail;
+    }
+
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }

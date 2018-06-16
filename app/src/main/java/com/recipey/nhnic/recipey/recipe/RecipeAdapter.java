@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.recipey.nhnic.recipey.R;
 import com.recipey.nhnic.recipey.app.Application;
 import com.recipey.nhnic.recipey.dtos.IngredientsDTO;
@@ -99,7 +101,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public void onBindViewHolder(final ViewHolder holder, int position) {
         switch(holder.getItemViewType()) {
             case R.layout.activity_recipe_header:
-                Picasso.with(Application.getInstance()).load(recipeDetailDTO.recipeImageUrl).fit().centerCrop().into(holder.recipeImage);
+                Picasso.with(Application.getInstance()).load(recipeDetailDTO.recipeImageUrl).centerCrop().fit().into(holder.recipeImage);
+                holder.recipeImage.setScaleType(ImageView.ScaleType.FIT_XY);
                 holder.shareButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -7,7 +7,7 @@
     <string name="empty_browse">Please add some ingredients to your fridge! We recommend recipes based on what you\'ve got in there!</string>
     <string name="discover_title">Discover</string>
     <string name="fridge_title">My Fridge</string>
-    <string name="history_title">History</string>
+    <string name="cookbook_title">Cookbook</string>
     <string name="saved_subtitle">Saved</string>
     <string name="past_subtitle">Past</string>
     <string name="profile_title">Profile</string>
