@@ -11,6 +11,7 @@ import com.recipey.nhnic.recipey.R;
 import com.recipey.nhnic.recipey.app.GenericActivity;
 import com.recipey.nhnic.recipey.app.SlidingTabLayout;
 import com.recipey.nhnic.recipey.tabs.cookbook.favorites.FavoritesFragment;
+import com.recipey.nhnic.recipey.tabs.cookbook.history.HistoryFragment;
 import com.recipey.nhnic.recipey.tabs.discover.DiscoverFragment;
 
 /**
@@ -50,7 +51,7 @@ public class CookbookFragment extends Fragment {
     private void assignVariables(Bundle savedInstanceState) {
         fragments = new Fragment[2];
         fragments[0] = new FavoritesFragment();
-        fragments[1] = new Fragment();
+        fragments[1] = new HistoryFragment();
 
         tabs.setTabs(2);
         tabs.setTabSetting(false);

@@ -3,11 +3,13 @@ package com.recipey.nhnic.recipey.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.recipey.nhnic.recipey.dtos.RecipeDetailDTO;
 import com.recipey.nhnic.recipey.dtos.RecipesDTO;
 import com.recipey.nhnic.recipey.main.DummyActivity;
+import com.recipey.nhnic.recipey.managers.HistoryManager;
 import com.recipey.nhnic.recipey.recipe.RecipeActivity;
 
 /**
@@ -24,6 +26,11 @@ public class GenericActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.putExtra("RECIPE_ID", recipe.recipeId);
         intent.setClass(this, RecipeActivity.class);
+
+        Log.d("GenericActivity", "asdfasdf");
+
+        HistoryManager.INSTANCE.addHistory(recipe);
+
         startActivity(intent);
     }
 

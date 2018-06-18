@@ -11,13 +11,9 @@ import com.recipey.nhnic.recipey.app.Application;
 import com.recipey.nhnic.recipey.dtos.RecipeDetailDTO;
 import com.recipey.nhnic.recipey.dtos.RecipesDTO;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 
 /**
  * Created by nhnic on 6/6/2018.

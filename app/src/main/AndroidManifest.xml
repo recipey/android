@@ -30,5 +30,11 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".tabs.cookbook.history.HistoryFragment$HistoryUpdateBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.recipey.UPDATE_HISTORY">
+                </action>
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
