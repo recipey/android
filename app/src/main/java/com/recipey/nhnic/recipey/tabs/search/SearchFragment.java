@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.VolleyError;
 import com.recipey.nhnic.recipey.R;
 import com.recipey.nhnic.recipey.dtos.RecipesDTO;
 import com.recipey.nhnic.recipey.managers.RecipeManager;
 import com.yayandroid.parallaxrecyclerview.ParallaxRecyclerView;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -35,6 +38,8 @@ public class SearchFragment extends Fragment {
         protected SearchAdapter searchAdapter;
         protected RecyclerView.LayoutManager layoutManager;
 
+        private ArrayList<RecipesDTO.Recipe> recipes;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -56,8 +61,23 @@ public class SearchFragment extends Fragment {
     }
 
     public void assignVariables(Bundle savedInstanceState) {
-        searchAdapter = new SearchAdapter(RecipeManager.INSTANCE.getRecipesDTO().recipes);
-//        searchAdapter = new SearchAdapter(new ArrayList<RecipesDTO.Recipe>());
+        recipes = new ArrayList<>();
+
+        searchAdapter = new SearchAdapter(recipes);
+
+        RecipeManager.INSTANCE.searchRecipes(new RecipeManager.ContentListener() {
+            @Override
+            public void success(JSONObject response) {
+                RecipesDTO recipesDTO = RecipeManager.INSTANCE.getRecipesDTO();
+
+                recipes.addAll(recipesDTO.recipes);
+            }
+
+            @Override
+            public void failed(VolleyError error) {
+
+            }
+        }, "");
 
         layoutManager = new LinearLayoutManager(getActivity());
         currentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;

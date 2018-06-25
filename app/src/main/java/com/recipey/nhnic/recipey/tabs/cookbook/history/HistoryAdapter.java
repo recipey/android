@@ -1,5 +1,7 @@
 package com.recipey.nhnic.recipey.tabs.cookbook.history;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,6 +29,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     private final String TAG = "HistoryAdapter";
 
     private ArrayList<RecipesDTO.Recipe> recipes;
+    private SharedPreferences sharedPreferences = Application.getInstance().getSharedPreferences(Application.getInstance().getPackageName(), Context.MODE_PRIVATE);
 
     public static class ViewHolder extends ParallaxViewHolder {
         public CardView cardView;
@@ -54,7 +57,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     public HistoryAdapter(ArrayList<RecipesDTO.Recipe> history) {
         this.recipes = history;
-        Log.d(TAG, "qwerqwerqwer");
     }
 
     @Override

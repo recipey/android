@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">recipey</string>
+    <string name="facebook_app_id">393298671167654</string>
+    <string name="fb_login_protocol_scheme">fb393298671167654</string>
     <string name="search_title">Search</string>
     <string name="search_string">Search</string>
     <string name="not_logged_in">Log in to save your fridge online!</string>

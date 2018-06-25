@@ -9,6 +9,7 @@ import com.recipey.nhnic.recipey.app.GenericActivity;
 import com.recipey.nhnic.recipey.app.SlidingTabLayout;
 import com.recipey.nhnic.recipey.tabs.cookbook.CookbookFragment;
 import com.recipey.nhnic.recipey.tabs.discover.DiscoverFragment;
+import com.recipey.nhnic.recipey.tabs.profile.ProfileFragment;
 import com.recipey.nhnic.recipey.tabs.search.SearchFragment;
 
 /**
@@ -46,7 +47,7 @@ public class MainActivity extends GenericActivity {
         fragments[1] = new DiscoverFragment();
         fragments[2] = new Fragment();
         fragments[3] = new CookbookFragment();
-        fragments[4] = new Fragment();
+        fragments[4] = new ProfileFragment();
 
 
         tabs.setTabs(5);

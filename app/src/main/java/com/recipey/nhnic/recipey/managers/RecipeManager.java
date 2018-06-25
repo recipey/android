@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.recipey.nhnic.recipey.app.Application;
 import com.recipey.nhnic.recipey.dtos.RecipeDetailDTO;
 import com.recipey.nhnic.recipey.dtos.RecipesDTO;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +27,8 @@ public enum RecipeManager {
     INSTANCE;
 
     private final String TAG = "RecipeManager";
+    private final String URL_BASE = "http://ec2-52-23-175-39.compute-1.amazonaws.com:8080";
 
-    private Context context;
     private APIManager apiManager;
     private SharedPreferences sharedPreferences;
 
@@ -34,8 +38,12 @@ public enum RecipeManager {
     private HashSet<Long> favoriteIds;
     private ArrayList<RecipeDetailDTO> favorites;
 
+    public interface ContentListener {
+        void success(JSONObject response);
+        void failed(VolleyError error);
+    }
+
     RecipeManager() {
-        this.context = Application.getInstance();
         this.apiManager = new APIManager();
         this.recipesDTO = new RecipesDTO();
         this.discoveredRecipesDTO = new RecipesDTO();
@@ -63,8 +71,31 @@ public enum RecipeManager {
         return recipesDTO;
     }
 
-    public void searchRecipes(String searchString) {
+    public void searchRecipes(final ContentListener listener, String searchString) {
+        String endpointUrl = URL_BASE + "/recipes/list";
 
+        Log.d(TAG, endpointUrl);
+
+        apiManager.makeAPICall(endpointUrl, null, Request.Method.GET, Application.getInstance(), new APIManager.APIListener() {
+            @Override
+            public void success(JSONObject response) {
+
+                recipesDTO = new Gson().fromJson(response.toString(), RecipesDTO.class);
+                Log.d(TAG, response.toString());
+
+                if(listener != null) {
+                    listener.success(response);
+                }
+            }
+
+            @Override
+            public void failed(VolleyError error) {
+                Log.d(TAG, error.toString());
+                if(listener != null) {
+                    listener.failed(error);
+                }
+            }
+        });
     }
 
     public RecipesDTO getDiscoveredRecipesDTO() {
@@ -120,7 +151,6 @@ public enum RecipeManager {
         if(favoriteIdStrings != null && favorites != null) {
             favoriteIds = new Gson().fromJson(favoriteIdStrings, new TypeToken<HashSet<Long>>(){}.getType());
             favorites = new Gson().fromJson(favoriteStrings, new TypeToken<ArrayList<RecipeDetailDTO>>(){}.getType());
-            Log.d(TAG, ""+favoriteIds);
         }
     }
 

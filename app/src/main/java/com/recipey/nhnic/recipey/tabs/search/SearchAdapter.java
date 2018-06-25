@@ -76,10 +76,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Recipe recipe = recipes.get(position);
 
+        holder.getBackgroundImage().reuse();
+
         Picasso.with(Application.getInstance()).load(recipe.recipeImageUrl).resize(300, 300).centerCrop().into(holder.recipeImage);
         holder.recipeName.setText(recipe.recipeName);
-
-//        holder.getBackgroundImage().reuse();
     }
 
     @Override
